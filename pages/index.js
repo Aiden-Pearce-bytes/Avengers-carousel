@@ -1,13 +1,11 @@
 import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
-import { Inter } from "next/font/google";
 import { climate } from "@/climate";
 import classNames from "classnames";
 
-const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
-  const [activeItem, setActiveItem] = useState(3);
+  const [activeItem, setActiveItem] = useState(2);
   const wrapperRef = useRef(0);
   const timeOutRef = useRef(0);
 
@@ -35,8 +33,11 @@ export default function Home() {
   }, [activeItem]);
 
   return (
-    <div className="flex bg-white h-screen w-full items-center justify-center">
+    <div className="flex bg-gray-900 h-screen w-full items-center justify-center">
       <div className="w-[1200px] max-w-full">
+        <div>
+          <h1 className="py-8 text-white text-4xl">Avengers</h1>
+        </div>
         <ul ref={wrapperRef} className="group flex flex-col md:flex-row md:h-[640px] gap-4 md:gap-[1.5%]">
           {climate.map((climate, index) => (
             <li
@@ -47,7 +48,8 @@ export default function Home() {
                 "md:[transition:width_var(--transition,200ms_ease-in)]",
                 "before:hidden md:before-block before:bg-white before:absolute before:bottom-0 before:left-[-10px] before:top-0 before:right-[-10px]",
                 "md:hover:w-[12%] md:[&:not(:hover),&:not(:first), &:not(:last)]:group-hover:w-[7%]",
-                "first:pointer-events-none last:pointer-events-none md:[&_img]:first:opacity-0 md:[&_img]:last:opacity-0"
+                // "first:pointer-events-none last:pointer-events-none",
+                // "md:[&_img]:first:opacity-0 md:[&_img]:last:opacity-0"
               )}
               key={climate.name}
             >
@@ -69,8 +71,8 @@ export default function Home() {
                   "p-4 md:absolute md:p-0 left-8 top-8 w-[590px] transition-[transform,opacity]",
                   activeItem === index ? "md:translate-x-0 md:opacity-100" : "md:translate-x-4 md:opacity-0"                
                 )}>
-                  <p className="text-sm md:text-lg uppercase text-purple-500">{climate.place}</p>
-                  <p className="text-lg md:text-4xl font-bold">{climate.name}</p>
+                  <p className="text-sm md:text-lg uppercase text-gray-900">{climate.name}</p>
+                  <p className="text-lg md:text-4xl font-bold">{climate.place}</p>
                 </div>
               </div>
             </li>
